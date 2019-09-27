@@ -17,6 +17,16 @@ namespace AukcioProjekt
         bool elkelt;
         DateTime now = DateTime.Now;
 
+        public Festmeny(string cim, string festo, string stilus)
+        {
+            this.cim = cim;
+            this.festo = festo;
+            this.stilus = stilus;
+            this.licitekSzama = 0;
+            this.legmagasabbLicit = 0;
+            this.elkelt = false;
+        }
+
         public string Cim { get => cim; set => cim = value; }
         public string Festo { get => festo; set => festo = value; }
         public string Stilus { get => stilus; set => stilus = value; }
@@ -54,13 +64,27 @@ namespace AukcioProjekt
             {
                 legmagasabbLicit += 100;
                 licitekSzama++;
+                legutolsoLicitIdeje = now;
             }
             else
             {
-                legmagasabbLicit =legmagasabbLicit+ (legmagasabbLicit / 10);
+                legmagasabbLicit+=legmagasabbLicit / 10;
                 licitekSzama++;
                 legutolsoLicitIdeje = now;
 
+            }
+        }
+        public void Licit(int mertek)
+        {
+            if (mertek>9 && mertek<101)
+            {
+                legmagasabbLicit = legmagasabbLicit+(legmagasabbLicit / mertek);
+                licitekSzama++;
+                legutolsoLicitIdeje = now;
+            }
+            else
+            {
+                Console.WriteLine("Hibás paraméter");
             }
         }
 
