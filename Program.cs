@@ -10,6 +10,8 @@ namespace AukcioProjekt
     {
         static void Main(string[] args)
         {
+
+
         }
     }
 }
